@@ -9,14 +9,25 @@
     "pods": "pod-install --quiet"
   },
   "dependencies": {
+    "@craftzdog/react-native-buffer": "^6.0.5",
+    "@icure/api": "^5.0.37",
+    "@icure/react-native-rsa-native": "^2.1.2",
+    "base-64": "^1.0.0",
     "react": "18.1.0",
-    "react-native": "0.70.3"
+    "react-native": "0.70.3",
+    "react-native-aes-crypto": "^2.1.1",
+    "react-native-dotenv": "^3.3.1",
+    "react-native-get-random-values": "^1.8.0",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@babel/runtime": "^7.12.5",
-    "metro-react-native-babel-preset": "0.72.3",
-    "babel-plugin-module-resolver": "^4.1.0"
+    "@types/react": "^18.0.21",
+    "@types/react-dom": "^18.0.6",
+    "@types/react-native": "^0.70.6",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "metro-react-native-babel-preset": "0.72.3"
   },
   "resolutions": {
     "@types/react": "^18.0.0",
