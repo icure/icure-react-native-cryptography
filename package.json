@@ -148,7 +148,6 @@
   "dependencies": {
     "@craftzdog/react-native-buffer": "^6.0.5",
     "@icure/api": "^5.0.31",
-    "@icure/medical-device-sdk": "^0.7.1",
     "@icure/react-native-rsa-native": "^2.1.2",
     "base-64": "^1.0.0",
     "react-native-aes-crypto": "^2.1.1",
