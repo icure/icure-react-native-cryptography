@@ -1,7 +1,7 @@
 {
-  "name": "icure-react-native-crypto",
-  "version": "0.1.0",
-  "description": "test",
+  "name": "@icure/icure-react-native-crypto",
+  "version": "1.0.0",
+  "description": "React-Native cryptography package for iCure",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
