@@ -178,10 +178,10 @@ const generateKey = async (
     }
 
     if (algorithm.name === 'AES-CBC') {
-      const nativeKey = await RSA.generateKeys(
+      const nativeKey = await Aes.randomKey(
         (algorithm as AesKeyGenParams).length
       );
-      const nativeRawKey = new Uint8Array(b642ab(nativeKey.private));
+      const nativeRawKey = new Uint8Array(hex2ua(nativeKey));
       const cryptoKey = await importKey(
         'raw',
         nativeRawKey,
