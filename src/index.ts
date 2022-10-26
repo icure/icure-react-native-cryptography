@@ -1,16 +1,17 @@
 import 'react-native-get-random-values';
 
 import { v4 as uuid } from 'uuid';
-import {
-  b642ab,
-  b642ua,
-  string2ab,
-  ua2b64,
-  ua2string,
-} from './utils/binary-utils';
+import { b642ab, b642ua, ua2b64 } from './utils/binary-utils';
 import { stringifyPrivateJWK, stringifyPublicJWK } from './utils/key-utils';
 
-import { hex2ua, jwk2pkcs8, jwk2spki, pkcs8ToJwk, spkiToJwk } from '@icure/api';
+import {
+  hex2ua,
+  jwk2pkcs8,
+  jwk2spki,
+  pkcs8ToJwk,
+  spkiToJwk,
+  ua2hex,
+} from '@icure/api';
 
 import Aes from 'react-native-aes-crypto';
 import { RSA } from '@icure/react-native-rsa-native';
@@ -31,17 +32,17 @@ const decrypt = async (
         (await exportKey('jwk', key)) as JsonWebKey
       );
       const toDecrypt = ua2b64(data as ArrayBuffer);
-      const decrypted = await RSA.decrypt(toDecrypt, privateKey);
+      const decrypted = await RSA.decrypt64(toDecrypt, privateKey);
 
       if (decrypted) {
-        return string2ab(decrypted);
+        return b642ua(decrypted);
       }
     }
 
     if (algorithm.name === 'AES-CBC') {
-      const aesKey = ua2b64((await exportKey('raw', key)) as ArrayBuffer);
+      const aesKey = ua2hex((await exportKey('raw', key)) as ArrayBuffer);
       const toDecrypt = ua2b64(data as ArrayBuffer);
-      const iv = ua2b64((algorithm as AesCbcParams).iv as ArrayBuffer);
+      const iv = ua2hex((algorithm as AesCbcParams).iv as ArrayBuffer);
       const decrypted = await Aes.decrypt(toDecrypt, aesKey, iv, 'aes-256-cbc');
       if (decrypted) {
         return b642ua(decrypted);
@@ -65,9 +66,9 @@ const encrypt = async (
       const publicKey = stringifyPublicJWK(
         (await exportKey('jwk', key)) as JsonWebKey
       );
-      const toEncrypt = ua2string(data as ArrayBuffer);
+      const toEncrypt = ua2b64(data as ArrayBuffer);
 
-      const encrypted = await RSA.encrypt(toEncrypt, publicKey);
+      const encrypted = await RSA.encrypt64(toEncrypt, publicKey);
 
       if (encrypted) {
         return b642ab(encrypted);
@@ -75,9 +76,9 @@ const encrypt = async (
     }
 
     if (algorithm.name === 'AES-CBC') {
-      const aesKey = ua2b64((await exportKey('raw', key)) as ArrayBuffer);
+      const aesKey = ua2hex((await exportKey('raw', key)) as ArrayBuffer);
       const toEncrypt = ua2b64(data as ArrayBuffer);
-      const iv = ua2b64((algorithm as AesCbcParams).iv as ArrayBuffer);
+      const iv = ua2hex((algorithm as AesCbcParams).iv as ArrayBuffer);
 
       const encrypted = await Aes.encrypt(toEncrypt, iv, aesKey, 'aes-256-cbc');
 
@@ -179,7 +180,7 @@ const generateKey = async (
 
     if (algorithm.name === 'AES-CBC') {
       const nativeKey = await Aes.randomKey(
-        (algorithm as AesKeyGenParams).length
+        (algorithm as AesKeyGenParams).length / 8
       );
       const nativeRawKey = new Uint8Array(hex2ua(nativeKey));
       const cryptoKey = await importKey(

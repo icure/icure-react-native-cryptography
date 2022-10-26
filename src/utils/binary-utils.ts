@@ -17,7 +17,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import { decode as atob, encode as btoa } from 'base-64';
+import { atob, btoa } from 'react-native-quick-base64';
 
 export const ua2string = (_ua: Uint8Array | ArrayBuffer): string => {
   let str = '';
