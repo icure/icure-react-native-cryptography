@@ -13,13 +13,19 @@ import {
   ua2hex,
 } from '@icure/api';
 
-import Aes from 'react-native-aes-crypto';
+import Aes from '@icure/react-native-aes-crypto';
 import { RSA } from '@icure/react-native-rsa-native';
 import { CryptoKeyStore } from './utils/key-store';
 
 export { Buffer } from '@craftzdog/react-native-buffer';
 
 const store = CryptoKeyStore.getInstance();
+
+const algorithms = {
+  128: 'aes-128-cbc',
+  192: 'aes-192-cbc',
+  256: 'aes-256-cbc',
+};
 
 const decrypt = async (
   algorithm: RsaOaepParams | AesCbcParams,
@@ -43,7 +49,14 @@ const decrypt = async (
       const aesKey = ua2hex((await exportKey('raw', key)) as ArrayBuffer);
       const toDecrypt = ua2b64(data as ArrayBuffer);
       const iv = ua2hex((algorithm as AesCbcParams).iv as ArrayBuffer);
-      const decrypted = await Aes.decrypt(toDecrypt, aesKey, iv, 'aes-256-cbc');
+      const decrypted = await Aes.decrypt(
+        toDecrypt,
+        aesKey,
+        iv,
+        algorithms[
+          (key.algorithm as AesKeyAlgorithm).length as 128 | 192 | 256
+        ] as 'aes-128-cbc' | 'aes-192-cbc' | 'aes-256-cbc'
+      );
       if (decrypted) {
         return b642ua(decrypted);
       }
@@ -80,7 +93,14 @@ const encrypt = async (
       const toEncrypt = ua2b64(data as ArrayBuffer);
       const iv = ua2hex((algorithm as AesCbcParams).iv as ArrayBuffer);
 
-      const encrypted = await Aes.encrypt(toEncrypt, iv, aesKey, 'aes-256-cbc');
+      const encrypted = await Aes.encrypt(
+        toEncrypt,
+        aesKey,
+        iv,
+        algorithms[
+          (key.algorithm as AesKeyAlgorithm).length as 128 | 192 | 256
+        ] as 'aes-128-cbc' | 'aes-192-cbc' | 'aes-256-cbc'
+      );
 
       if (encrypted) {
         return b642ua(encrypted);

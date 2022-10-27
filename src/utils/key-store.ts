@@ -250,9 +250,14 @@ export class CryptoKeyStore {
           ? AESCBCUtils.jwk2raw(keyData as JsonWebKey)
           : abs2kd([keyData as ArrayBuffer], AES_KEY_DATA_KEYS);
 
+      const updatedAlgorithm = {
+        ...algorithm,
+        length: cryptoKeyData.k!.byteLength * 8,
+      };
+
       const cryptoKey: CryptoKey = {
         ...{
-          algorithm: algorithm,
+          algorithm: updatedAlgorithm,
           extractable: extractable,
           usages: [...keyUsages],
           type: 'secret',
