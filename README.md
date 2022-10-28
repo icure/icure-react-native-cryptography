@@ -30,6 +30,7 @@ yarn add @icure/medical-device-sdk
 import crypto from '@icure/icure-react-native-crypto';
 import { AnonymousMedTechApiBuilder } from '@icure/medical-device-sdk';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { StorageFacade } from "@icure/medical-device-sdk";
 
 Buffer = require('@craftzdog/react-native-buffer').Buffer;
 
