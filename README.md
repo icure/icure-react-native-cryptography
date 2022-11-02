@@ -1,6 +1,6 @@
 # icure-react-native-crypto
 
-Cryptography package for iCure for **React Native**.
+**React Native** Cryptography package for iCure.
 
 ## Table of Contents
 
@@ -73,9 +73,9 @@ Buffer = require('@craftzdog/react-native-buffer').Buffer;
 // ...
 
 /*
- * Since React-Native don't have it's own implementation of LocalStorage,
+ * Since React-Native doesn't have its own implementation of LocalStorage,
  * we have to provide a custom implementation to the iCure Medtech SDK through AnonymousMedTechApi or MedTechApi.
- * I'd recommend to use the @react-native-async-storage/async-storage package.
+ * We recommend you to use the @react-native-async-storage/async-storage package.
 */
 export class AsyncStorageImpl implements StorageFacade<string> {
 
@@ -85,14 +85,14 @@ export class AsyncStorageImpl implements StorageFacade<string> {
 
   async setItem(key: string, valueToStore: string): Promise<void> {
     await AsyncStorage.setItem(key, valueToStore)
-      .then(() => console.log("Stored key: " + key))
-      .catch((error) => console.log("Error storing key: " + key + " - " + error));
+      .then(() => console.log("Stored key: " + key)) // Logs added only as debug purpose. Do not log those in production
+      .catch((error) => console.log("Error storing key: " + key + " - " + error)); // Logs added only as debug purpose. Do not log those in production
   }
 
   async deleteItem(key: string): Promise<void> {
     await AsyncStorage.removeItem(key)
-      .then(() => console.log("Deleted key: " + key))
-      .catch((error) => console.log("Error deleting key: " + key + " - " + error));
+      .then(() => console.log("Deleted key: " + key)) // Logs added only as debug purpose. Do not log those in production
+      .catch((error) => console.log("Error deleting key: " + key + " - " + error)); // Logs added only as debug purpose. Do not log those in production
   }
 }
 
@@ -136,14 +136,14 @@ export class AsyncStorageImpl implements StorageFacade<string> {
 
   async setItem(key: string, valueToStore: string): Promise<void> {
     await AsyncStorage.setItem(key, valueToStore)
-      .then(() => console.log("Stored key: " + key))
-      .catch((error) => console.log("Error storing key: " + key + " - " + error));
+      .then(() => console.log("Stored key: " + key)) // Logs added only as debug purpose. Do not log those in production
+      .catch((error) => console.log("Error storing key: " + key + " - " + error)); // Logs added only as debug purpose. Do not log those in production
   }
 
   async deleteItem(key: string): Promise<void> {
     await AsyncStorage.removeItem(key)
-      .then(() => console.log("Deleted key: " + key))
-      .catch((error) => console.log("Error deleting key: " + key + " - " + error));
+      .then(() => console.log("Deleted key: " + key)) // Logs added only as debug purpose. Do not log those in production
+      .catch((error) => console.log("Error deleting key: " + key + " - " + error)); // Logs added only as debug purpose. Do not log those in production
   }
 }
 
