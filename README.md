@@ -10,10 +10,11 @@ Cryptography package for iCure for **React Native**.
   * [Installation](#installation)
     * [Cryptography libraries](#cryptography-libraries)
     * [iCure libraries](#icure-libraries)
-    * [iCure MedTech SDK](#icure-medtech-sdk)
-    * [iCure SDK](#icure-sdk)
-      * [iCure MedTech SDK](#icure-medtech-sdk)
-      * [iCure SDK](#icure-sdk)
+      * [iCure Medical Typescript SDK](#icure-medical-typescript-sdk)
+      * [iCure Typescript SDK](#icure-typescript-sdk)
+  * [Usage](#usage)
+    * [iCure Medical Typescript SDK](#icure-medical-typescript-sdk)
+    * [iCure Typescript SDK](#icure-typescript-sdk)
   * [Contributing](#contributing)
   * [License](#license)
 <!-- TOC -->
@@ -35,7 +36,7 @@ yarn add @icure/icure-react-native-crypto @craftzdog/react-native-buffer @icure/
 You may want to install the following libraries to use iCure depending of your needs. If you already have the MedTech
 libraries installed, it is not mandatory to add the iCure SDK your project.
 
-### iCure MedTech SDK
+#### iCure Medical Typescript SDK
 
 ```sh
 npm install @icure/medical-device-sdk
@@ -45,7 +46,7 @@ npm install @icure/medical-device-sdk
 yarn add @icure/medical-device-sdk
 ```
 
-### iCure SDK
+#### iCure Typescript SDK
 
 ```sh
 npm install @icure/api
@@ -55,7 +56,9 @@ npm install @icure/api
 yarn add @icure/api
 ```
 
-#### iCure MedTech SDK
+## Usage
+
+### iCure Medical Typescript SDK
 
 To use the iCure MedTech SDK, you need to import the `@icure/medical-device-sdk` package (v1.0.0 or above).
 
@@ -106,7 +109,7 @@ const anonymousMedTechApi = await new AnonymousMedTechApiBuilder()
   .build();
 ```
 
-#### iCure SDK
+### iCure Typescript SDK
 
 To use the iCure SDK, you need to import the `@icure/api` package (v6.0.0 or above).
 
