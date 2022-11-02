@@ -2,6 +2,22 @@
 
 Cryptography package for iCure for **React Native**.
 
+## Table of Contents
+
+<!-- TOC -->
+* [icure-react-native-crypto](#icure-react-native-crypto)
+  * [Table of Contents](#table-of-contents)
+  * [Installation](#installation)
+    * [Cryptography libraries](#cryptography-libraries)
+    * [iCure libraries](#icure-libraries)
+    * [iCure MedTech SDK](#icure-medtech-sdk)
+    * [iCure SDK](#icure-sdk)
+      * [iCure MedTech SDK](#icure-medtech-sdk)
+      * [iCure SDK](#icure-sdk)
+  * [Contributing](#contributing)
+  * [License](#license)
+<!-- TOC -->
+
 ## Installation
 
 ### Cryptography libraries
@@ -39,9 +55,7 @@ npm install @icure/api
 yarn add @icure/api
 ```
 
-## Usage
-
-### iCure MedTech SDK
+#### iCure MedTech SDK
 
 To use the iCure MedTech SDK, you need to import the `@icure/medical-device-sdk` package (v1.0.0 or above).
 
@@ -92,7 +106,7 @@ const anonymousMedTechApi = await new AnonymousMedTechApiBuilder()
   .build();
 ```
 
-### iCure SDK
+#### iCure SDK
 
 To use the iCure SDK, you need to import the `@icure/api` package (v6.0.0 or above).
 
