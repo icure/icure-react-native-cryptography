@@ -127,7 +127,7 @@ Buffer = require('@craftzdog/react-native-buffer').Buffer;
 
 /*
  * Since React-Native don't have it's own implementation of LocalStorage, we have to provide a custom implementation to the iCure SDK through Api.
- * I'd recommend to use the @react-native-async-storage/async-storage package.
+ * We recommend you to use the @react-native-async-storage/async-storage package.
  */
 export class AsyncStorageImpl implements StorageFacade<string> {
 
