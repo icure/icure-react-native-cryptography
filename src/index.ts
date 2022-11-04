@@ -38,7 +38,10 @@ const decrypt = async (
         (await exportKey('jwk', key)) as JsonWebKey
       );
       const toDecrypt = ua2b64(data as ArrayBuffer);
-      const decrypted = await RSA.decrypt64(toDecrypt, privateKey);
+      const decrypted = await RSA.decrypt64(
+        toDecrypt,
+        `-----BEGIN RSA PRIVATE KEY-----\n${privateKey}\n-----END RSA PRIVATE KEY-----\n`
+      );
 
       if (decrypted) {
         return b642ua(decrypted);
@@ -49,7 +52,7 @@ const decrypt = async (
       const aesKey = ua2hex((await exportKey('raw', key)) as ArrayBuffer);
       const toDecrypt = ua2b64(data as ArrayBuffer);
       const iv = ua2hex((algorithm as AesCbcParams).iv as ArrayBuffer);
-      const decrypted = await Aes.decrypt(
+      const decrypted = await Aes.decrypt64(
         toDecrypt,
         aesKey,
         iv,
@@ -93,7 +96,7 @@ const encrypt = async (
       const toEncrypt = ua2b64(data as ArrayBuffer);
       const iv = ua2hex((algorithm as AesCbcParams).iv as ArrayBuffer);
 
-      const encrypted = await Aes.encrypt(
+      const encrypted = await Aes.encrypt64(
         toEncrypt,
         aesKey,
         iv,

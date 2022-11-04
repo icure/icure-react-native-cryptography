@@ -60,7 +60,7 @@ yarn add @icure/api
 
 ### iCure Medical Typescript SDK
 
-To use the iCure MedTech SDK, you need to import the `@icure/medical-device-sdk` package (v1.0.0 or above).
+To use the iCure MedTech SDK, you need to import the `@icure/medical-device-sdk` package (v1.0.3 or above).
 
 ```typescript
 import crypto from '@icure/icure-react-native-crypto';
@@ -106,12 +106,13 @@ const anonymousMedTechApi = await new AnonymousMedTechApiBuilder()
   .withAuthProcessByEmailId(authProcessId)
   .withAuthProcessBySmsId(authProcessId)
   .withStorage(new AsyncStorageImpl()) // Implementation of StorageFacade interface that we have created above
+  .preventCookieUsage()
   .build();
 ```
 
 ### iCure Typescript SDK
 
-To use the iCure SDK, you need to import the `@icure/api` package (v6.0.0 or above).
+To use the iCure SDK, you need to import the `@icure/api` package (v6.0.1 or above).
 
 ```typescript
 import crypto from '@icure/icure-react-native-crypto';
