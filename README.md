@@ -150,6 +150,9 @@ export class AsyncStorageImpl implements StorageFacade<string> {
 
 // ...
 
+const storage = new AsyncStorageImpl(); // StorageFacade implementation that we have created above
+const keyStorage = new KeyStorageImpl(storage) // KeyStorage implementation that @icure/api exposes
+
 const apis = Api(
   icureUrl,
   username,
@@ -158,8 +161,8 @@ const apis = Api(
   fetch,
   forceAuthorization,
   autoLogin,
-  new AsyncStorageImpl(), // StorageFacade implementation that we have created above
-  new KeyStorageImpl() // KeyStorage implementation that @icure/api exposes
+  storage,
+  keyStorage
 );
 
 ```
