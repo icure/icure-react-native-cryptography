@@ -27,6 +27,7 @@
 npm install @icure/icure-react-native-crypto @craftzdog/react-native-buffer @icure/icure-react-native-crypto @icure/react-native-aes-crypto @icure/react-native-rsa-native @react-native-async-storage/async-storage react-native-get-random-values react-native-quick-base64
 ```
 
+
 ```sh
 yarn add @icure/icure-react-native-crypto @craftzdog/react-native-buffer @icure/icure-react-native-crypto @icure/react-native-aes-crypto @icure/react-native-rsa-native @react-native-async-storage/async-storage react-native-get-random-values react-native-quick-base64
 ```
