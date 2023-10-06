@@ -1,8 +1,7 @@
 name: Licenses report
 on:
   push:
-    tags:
-      - '*'
+    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -14,14 +13,14 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         node-version: 18
-        
+
     - name: Creating licenses report
       run: |
         yarn licenses list --prod --json --no-progress | jq -r '.data.body[] | select(length >= 5) | ["\(.[0]):\(.[1])", .[3], .[2]] | @csv' > ~/${{ github.event.repository.name }}.csv
-        
+
     - name: Checkout repo
       uses: actions/checkout@v2
-    
+
     - name: Setup Git
       run: |
         git config --global user.name "icure-dev"
