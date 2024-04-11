@@ -21,7 +21,7 @@
     "removeComments": true,
     "sourceMap": true,
     "inlineSources": true,
-    "outDir": "./dist",
+    "outDir": "./lib",
     "lib": ["es2017", "es6", "es5", "dom"],
     "skipLibCheck": true,
     "paths": {
