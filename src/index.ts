@@ -157,7 +157,7 @@ const exportKey = async (
 };
 
 const generateKey = async (
-  algorithm: RsaKeyAlgorithm | AesKeyGenParams,
+  algorithm: RsaHashedKeyAlgorithm | AesKeyGenParams,
   extractable: boolean,
   keyUsages: ReadonlyArray<KeyUsage>
 ): Promise<CryptoKeyPair | CryptoKey> => {
@@ -174,13 +174,13 @@ const generateKey = async (
   try {
     if (algorithm.name === 'RSA-OAEP') {
       const keyPair = await RSA.generateKeys(
-        (algorithm as RsaKeyAlgorithm).modulusLength
+        (algorithm as RsaHashedKeyAlgorithm).modulusLength
       );
 
       const publicKey: CryptoKey = await importKey(
         'jwk',
         spkiToJwk(b642ua(stripRSAKeyHeaderAndFooter(keyPair.public)!)),
-        algorithm as RsaKeyAlgorithm,
+        algorithm as RsaHashedKeyAlgorithm,
         extractable,
         ['encrypt']
       );
@@ -190,7 +190,7 @@ const generateKey = async (
         pkcs8ToJwk(
           b642ab(stripRSAKeyHeaderAndFooter(keyPair.private)!) as ArrayBuffer
         ),
-        algorithm as RsaKeyAlgorithm,
+        algorithm as RsaHashedKeyAlgorithm,
         extractable,
         ['decrypt']
       );
@@ -227,7 +227,7 @@ const generateKey = async (
 const importKey = async (
   format: 'jwk' | 'raw',
   keyData: JsonWebKey | BufferSource,
-  algorithm: RsaKeyAlgorithm | AesKeyAlgorithm,
+  algorithm: RsaHashedKeyAlgorithm | AesKeyAlgorithm,
   extractable: boolean,
   keyUsages: ReadonlyArray<KeyUsage>
 ): Promise<CryptoKey> => {

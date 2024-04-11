@@ -201,7 +201,7 @@ export class CryptoKeyStore {
   public importKey = (
     format: 'jwk' | 'raw',
     keyData: JsonWebKey | BufferSource,
-    algorithm: RsaKeyAlgorithm | AesKeyAlgorithm,
+    algorithm: RsaHashedKeyAlgorithm | AesKeyAlgorithm,
     extractable: boolean,
     keyUsages: ReadonlyArray<KeyUsage>
   ): Promise<CryptoKey> => {
@@ -276,9 +276,20 @@ export class CryptoKeyStore {
     if (algorithm.name === 'RSA-OAEP' && format === 'jwk') {
       const cryptoKeyData = RSAOAEPUtils.jwk2raw(keyData as JsonWebKey);
 
+      let algorithmName = algorithm.name;
+      if (
+        (algorithm as RsaHashedKeyAlgorithm).hash.name.toLowerCase() ===
+        'sha-256'
+      ) {
+        algorithmName = `RSA-OAEP-256`;
+      }
+
       const cryptoKey: CryptoKey = {
         ...{
-          algorithm: algorithm,
+          algorithm: {
+            ...algorithm,
+            name: algorithmName,
+          },
           extractable: extractable,
           usages: [...keyUsages],
           type: cryptoKeyData.d || cryptoKeyData.dq ? 'private' : 'public',

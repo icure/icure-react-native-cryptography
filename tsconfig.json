@@ -1,28 +1,34 @@
 {
   "compilerOptions": {
-    "baseUrl": "./",
+    /* Basic Options */
+    "target": "es6",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "declaration": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "noImplicitThis": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    /* Additional Checks */
+    "noUnusedLocals": false /* Report errors on unused locals. */, // TODO: reenable (unused imports!)
+    "noUnusedParameters": false /* Report errors on unused parameters. */, // TODO: set to true again
+    "noImplicitReturns": true /* Report error when not all code paths in function return a value. */,
+    "noFallthroughCasesInSwitch": true /* Report errors for fallthrough cases in switch statement. */,
+    "sourceRoot": "./src",
+    "allowSyntheticDefaultImports": true,
+    "preserveConstEnums": true,
+    "removeComments": true,
+    "sourceMap": true,
+    "inlineSources": true,
+    "outDir": "./dist",
+    "lib": ["es2017", "es6", "es5", "dom"],
+    "skipLibCheck": true,
     "paths": {
       "icure-react-native-crypto": ["./src/index"]
-    },
-    "allowUnreachableCode": false,
-    "allowUnusedLabels": false,
-    "esModuleInterop": true,
-    "importsNotUsedAsValues": "error",
-    "forceConsistentCasingInFileNames": true,
-    "jsx": "react",
-    "lib": ["esnext", "dom"],
-    "module": "esnext",
-    "moduleResolution": "node",
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitReturns": true,
-    "noImplicitUseStrict": false,
-    "noStrictGenericChecks": false,
-    "noUncheckedIndexedAccess": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "target": "esnext"
-  }
+    }
+  },
+  "include": ["./src/**/*.ts"],
+  "exclude": ["./node_modules", "./dist", "./src/__tests__/*"],
+  "filesGlob": ["./**/*.ts"]
 }
