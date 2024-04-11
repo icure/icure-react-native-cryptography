@@ -131,7 +131,7 @@ export class CryptoKeyStore {
 
     if (
       !!cryptoKey?.algorithm?.name &&
-      cryptoKey.algorithm.name !== 'RSA-OAEP' &&
+      !cryptoKey.algorithm.name.startsWith('RSA-OAEP') &&
       cryptoKey.algorithm.name !== 'AES-CBC'
     ) {
       throw Error(
@@ -155,7 +155,7 @@ export class CryptoKeyStore {
     }
 
     if (
-      cryptoKey.algorithm.name === 'RSA-OAEP' &&
+      cryptoKey.algorithm.name.startsWith('RSA-OAEP') &&
       !!format &&
       format !== 'jwk'
     ) {
@@ -191,7 +191,7 @@ export class CryptoKeyStore {
         Handle RSA-OAEP export
     */
 
-    if (cryptoKey.algorithm.name === 'RSA-OAEP') {
+    if (cryptoKey.algorithm.name.startsWith('RSA-OAEP')) {
       return Promise.resolve(RSAOAEPUtils.raw2jwk(cryptoKey, keyData));
     }
 
@@ -211,7 +211,7 @@ export class CryptoKeyStore {
 
     if (
       !!algorithm?.name &&
-      algorithm.name !== 'RSA-OAEP' &&
+      !algorithm.name.startsWith('RSA-OAEP') &&
       algorithm.name !== 'AES-CBC'
     ) {
       throw Error(
@@ -273,7 +273,7 @@ export class CryptoKeyStore {
         Handle RSA-OAEP import
     */
 
-    if (algorithm.name === 'RSA-OAEP' && format === 'jwk') {
+    if (algorithm.name.startsWith('RSA-OAEP') && format === 'jwk') {
       const cryptoKeyData = RSAOAEPUtils.jwk2raw(keyData as JsonWebKey);
 
       let algorithmName = algorithm.name;

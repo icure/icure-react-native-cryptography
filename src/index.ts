@@ -124,7 +124,7 @@ const exportKey = async (
   try {
     if (
       key?.algorithm?.name === 'AES-CBC' ||
-      key?.algorithm?.name === 'RSA-OAEP'
+      key?.algorithm?.name?.startsWith('RSA-OAEP')
     ) {
       const exporters = {
         jwk: async (key: CryptoKey) => {
