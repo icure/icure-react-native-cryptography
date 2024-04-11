@@ -72,7 +72,7 @@ const RSAOAEPUtils = {
     return kd2jwk(keyData, {
       kty: 'RSA',
       key_ops: cryptoKey.usages,
-      alg: 'RSA-OAEP',
+      alg: cryptoKey.algorithm.name,
       ext: cryptoKey.extractable,
     });
   },
